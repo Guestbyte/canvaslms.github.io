@@ -3,18 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Canvas LMS Admin Dashboard - WIP</title>
+    <title>2 Canvas LMS Admin Dashboard - WIP </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
     <link rel="stylesheet" href="css/style.css">
+    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
+    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.0/vuex.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.2/vue-router.min.js'></script>
 </head>
 
 <body>
     <!-- Component: product -->
     <template id="product">
-    <div class="product">
+    <div class="product"> 
       <div class="product-image">
         <img :src="`http://www.patrickhurley.co.uk/assets/img/${img}.png`" alt="" />
       </div>
@@ -47,9 +52,8 @@
       <h2>{{ product.name }}</h2>
       <img :src="`http://www.patrickhurley.co.uk/assets/img/${product.img}.png`" alt="" />
       <p>{{ lorem }}</p>
-      <router-link class="btn red lighten-1"
-        :to="{ name: 'department', params: { department: product.department.toLowerCase() }}"><i
-          class="fas fa-arrow-left"></i> Back to {{ product.department }}</router-link>
+      <router-link class="btn red lighten-1" 
+        :to="{ name: 'department', params: { department: product.department.toLowerCase() }}"><i class="fas fa-arrow-left"></i> Back to {{ product.department }}</router-link>
       <button class="btn" @click="addToCart(productPayload)">Add to cart</button>
       <blockquote v-show="itemCount(itemIndex) > 0">{{ itemCount(itemIndex) + ' in cart' }}</blockquote>
     </div>
@@ -180,11 +184,6 @@
             <v-btn flat="flat" @click.native="snackbar = false">Close</v-btn>
         </v-snackbar>
     </v-app>
-    <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js'></script>
-    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.0/vuex.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue-router/3.0.2/vue-router.min.js'></script>
     <script src="js/index.js"></script>
 </body>
 
