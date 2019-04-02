@@ -19,6 +19,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+<<<<<<< HEAD
 // */
 // $servername = "localhost";
 // $username = "mathe046_dw";
@@ -37,6 +38,26 @@
 //DB::$user = 'mathe046_dw';
 //DB::$password = 'dw_mathema';
 //DB::$dbName = 'mathe046_dw';
+=======
+*/
+$servername = "localhost";
+$username = "mathe046_dw";
+$password = "dw_mathema";
+$dbname = "mathe046_dw";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+	die("Falha de conexão: " . $conn->connect_error);
+} else {
+	//echo "Connected successfully";
+}
+
+require_once 'meekrodb.2.3.class.php';
+DB::$user = 'mathe046_dw';
+DB::$password = 'dw_mathema';
+DB::$dbName = 'mathe046_dw';
+>>>>>>> 2daf22a6a552e19e18c0e06a7167eabda5735a03
 
 //include 'class.simple_mail.php';
 
@@ -285,6 +306,13 @@ class CanvasLMS
 		}
 	}
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 2daf22a6a552e19e18c0e06a7167eabda5735a03
 	//These are the internal functions that do the calls.
 	//	private function getlist($base,$itemident,$nameident,$max=-1) {
 	public function getlist($base, $itemident, $nameident, $max = -1)
@@ -294,6 +322,7 @@ class CanvasLMS
 		$itemcnt = 0;
 		$itemassoc = array();
 		while (1) {
+<<<<<<< HEAD
 
 			try {
 				$f = file_get_contents('https://' . $this->domain . $base . 'per_page=50&page=' . $pagecnt . '&access_token=' . $this->token);
@@ -303,6 +332,9 @@ class CanvasLMS
 			}
 
 
+=======
+			$f = @file_get_contents('https://' . $this->domain . $base . 'per_page=50&page=' . $pagecnt . '&access_token=' . $this->token);
+>>>>>>> 2daf22a6a552e19e18c0e06a7167eabda5735a03
 			$pagecnt++;
 			if (trim($f) == '[]' || $pagecnt > 30 || $f === false) {
 				break; //stop if we run out, or if something went wrong and $pagecnt is over 30
