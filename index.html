@@ -18,7 +18,7 @@
 
 <body>
     <!-- Component: product -->
-    <template id="product">
+    <!-- <template id="product">
     <div class="product"> 
       <div class="product-image">
         <img :src="`http://www.patrickhurley.co.uk/assets/img/${img}.png`" alt="" />
@@ -31,23 +31,27 @@
         <blockquote v-show="itemCount(itemIndex) > 0">{{ itemCount(itemIndex) + ' in cart' }}</blockquote>
         <button class="btn" @click="addToCart(product)">Add to Cart</button>
       </div>
-  </template>
+  </template> -->
     <!-- /product -->
     <!-- Component: department -->
-    <template id="department">
+    <!-- <template id="department">
+    
     <div class="content">
+
       <section v-if="errored">
         <p>Hmmm. Something has gone wrong.</p>
       </section>
       <section v-if="!errored">
+          teste
         <p v-show="loading">Loading... <i class="fas fa-spinner fa-spin"></i></p>
+        
         <Product v-for="(product, index) in filteredProducts" :key="index" v-bind="product" />
       </section>
     </div>
-  </template>
+  </template> -->
     <!-- /department -->
     <!-- Component: product-detail -->
-    <template id="product-detail">
+    <!-- <template id="product-detail">
     <div v-if="product" class="product-detail">
       <h2>{{ product.name }}</h2>
       <img :src="`http://www.patrickhurley.co.uk/assets/img/${product.img}.png`" alt="" />
@@ -57,8 +61,37 @@
       <button class="btn" @click="addToCart(productPayload)">Add to cart</button>
       <blockquote v-show="itemCount(itemIndex) > 0">{{ itemCount(itemIndex) + ' in cart' }}</blockquote>
     </div>
-  </template>
+  </template> -->
     <!-- /product-detail -->
+
+
+    <!-- Component: user-report -->
+    <template id="user-report">
+            <div class="content">
+                <section>
+                    {{ report.name }}
+                </section>
+            </div>
+        </template>
+    <!-- /department -->
+    <!-- Component: course-report -->
+    <template id="course-report">
+        <div class="content">
+            <section>
+                {{ report.name }}
+            </section>
+        </div>
+    </template>
+    <!-- /department -->
+    <!-- Component: setup -->
+    <template id="setup">
+            <div class="content">
+                <section>
+                    {{ report.name }}
+                </section>
+            </div>
+        </template>
+    <!-- /department -->
     <!-- App -->
     <v-app v-cloak id="app" class="outer">
         <v-navigation-drawer app="app" temporary="temporary" v-model="drawer" fixed="fixed">
@@ -67,8 +100,9 @@
                     <v-list-tile-action>
                         <v-icon>supervisor_account</v-icon>
                     </v-list-tile-action>
-                    <v-list-tile-content>
-                        <v-btn left="left" target="_blank">Contas</v-btn>
+                    <v-list-tile-content class="text-sm-left">
+                        <router-link :to="{ name: 'homepage'}">Home
+                        </router-link>
                     </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
@@ -76,21 +110,28 @@
                         <v-icon>supervisor_account</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content class="text-sm-left">
-                        <a href="">Usuários</a>
+                        <router-link :to="{ name: 'user-report'}">{{ UserReportName }}
+                        </router-link>
                     </v-list-tile-content>
                 </v-list-tile>
                 <v-list-tile>
                     <v-list-tile-action>
                         <v-icon>supervisor_account</v-icon>
                     </v-list-tile-action>
-                    <v-list-tile-content>Cursos</v-list-tile-content>
+                    <v-list-tile-content>
+                        <router-link :to="{ name: 'course-report'}">{{ CourseReportName }}
+                        </router-link>
+                    </v-list-tile-content>
                 </v-list-tile>
                 <hr>
                 <v-list-tile>
                     <v-list-tile-action>
                         <v-icon>supervisor_account</v-icon>
                     </v-list-tile-action>
-                    <v-list-tile-content>Configurações</v-list-tile-content>
+                    <v-list-tile-content>
+                        <router-link :to="{ name: 'setup'}">{{ SetupPageName }}
+                        </router-link>
+                    </v-list-tile-content>
                 </v-list-tile>
                 <hr>
             </v-list>
@@ -99,7 +140,7 @@
             <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
             <v-toolbar-title>{{ appTitle }}</v-toolbar-title>
             <v-spacer></v-spacer>
-            <v-btn flat="flat" href="https://vuejs.org/v2/guide/installation.html" target="_blank">
+            <!-- <v-btn flat="flat" href="https://vuejs.org/v2/guide/installation.html" target="_blank">
                 <v-icon left="left">code</v-icon>Vue
             </v-btn>
             <v-btn flat="flat" href="https://vuetifyjs.com/en/getting-started/quick-start" target="_blank">
@@ -107,24 +148,21 @@
             </v-btn>
             <v-btn flat="flat" href="https://material.io/icons/" target="_blank">
                 <v-icon left="left">star</v-icon>Icons
-            </v-btn>
+            </v-btn> -->
         </v-toolbar>
         <div class="nav">
-            <div class="logo">
-                <img src="https://vuejs.org/images/logo.png" class="vue-logo-v" />
-                <h1>
-                    <router-link class="no-active" to="/">uemart</router-link>
-                </h1>
-            </div>
-            <div class="shopping-status">
-                <a @click="showModal = true">Cart: ({{ cartCount }})</a>
-            </div>
-        </div>
 
-        <li v-for="course in courses" :src="course.course_code" :alt="course.account_id">{{ course.course_code }}</li>
+            <div class="logo">
+                <!-- <router-link class="no-active" to="/">fff</router-link> -->
+            </div>
+            <!-- <div class="shopping-status">
+                <a @click="showModal = true">Cart: ({{ cartCount }})</a>
+            </div> -->
+        </div>
+        <!-- <li v-for="course in courses" :src="course.course_code" :alt="course.account_id">{{ course.course_code }}</li> -->
 
         <section class="table full">
-            <aside>
+            <!-- <aside>
                 <div class="menu">
                     <h2>Department</h2>
                     <div v-if="errored">
@@ -140,7 +178,8 @@
                         </ul>
                     </div>
                 </div>
-            </aside>
+
+            </aside> -->
             <main>
                 <transition name="medium-fade" @after-leave="afterLeave">
                     <router-view :key="$route.path"></router-view>
@@ -148,7 +187,7 @@
             </main>
         </section>
         <!-- modal -->
-        <transition name="fast-fade">
+        <!-- <transition name="fast-fade">
             <div v-show="showModal" class="modal-backdrop">
                 <div class="modalouter">
                     <div class="modal-cell">
@@ -178,9 +217,9 @@
                     </div>
                 </div>
             </div>
-        </transition>
+        </transition> -->
         <!--modal-->
-        <v-snackbar :timeout="0" color="cyan darken-2" v-model="snackbar">Vue 2.5.13 & Vuetify 1.0.3
+        <v-snackbar :timeout="0" color="cyan darken-2" v-model="snackbar">Beta
             <v-btn flat="flat" @click.native="snackbar = false">Close</v-btn>
         </v-snackbar>
     </v-app>

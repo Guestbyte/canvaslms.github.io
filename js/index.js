@@ -107,9 +107,9 @@ const store = new Vuex.Store({
 })
 
 // Vue filter
-Vue.filter('capitalise', function(val) {
-    return val.toUpperCase();
-});
+//Vue.filter('capitalise', function(val) {
+//    return val.toUpperCase();
+//});
 
 // Vue component: homepage
 const Homepage = {
@@ -197,6 +197,51 @@ const Department = {
     }
 }
 
+// Vue component: UserReport
+const UserReport = {
+    template: '#user-report',
+    data() {
+        return {
+            report: {
+                'name': "User Report"
+            }
+        }
+    },
+    props: {
+        name: String
+    }
+}
+
+// Vue component: CourseReport
+const CourseReport = {
+    template: '#course-report',
+    data() {
+        return {
+            report: {
+                'name': "Course Report"
+            }
+        }
+    },
+    props: {
+        name: String
+    }
+}
+
+// Vue component: Setup
+const Setup = {
+    template: '#setup',
+    data() {
+        return {
+            report: {
+                'name': "General Setup"
+            }
+        }
+    },
+    props: {
+        name: String
+    }
+}
+
 // Vue component: product-detail
 const ProductDetail = {
     template: '#product-detail',
@@ -259,6 +304,24 @@ const router = new VueRouter({
             name: 'product-detail',
             component: ProductDetail,
             props: true
+        },
+        {
+            path: '/user-report',
+            name: 'user-report',
+            component: UserReport,
+            props: true
+        },
+        {
+            path: '/course-report',
+            name: 'course-report',
+            component: CourseReport,
+            props: true
+        },
+        {
+            path: '/setup',
+            name: 'setup',
+            component: Setup,
+            props: true
         }
     ]
 })
@@ -277,7 +340,10 @@ new Vue({
             drawer: false,
             snackbar: true,
             item: '',
-            courses: []
+            courses: [],
+            UserReportName: "User Details",
+            SetupPageName: "General Setup",
+            CourseReportName: "Course Details"
         }
     },
     filters: {
@@ -334,7 +400,9 @@ new Vue({
             'itemTotal'
         ]),
         departments() {
-            let allDepartments = this.products.map(x => x.department.toLowerCase())
+            let allDepartments = this.products.map(x => {
+                return x.department.toLowerCase();
+            })
             return [...new Set(allDepartments)]
         }
     },
